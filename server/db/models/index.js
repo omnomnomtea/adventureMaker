@@ -1,6 +1,7 @@
 const User = require('./user');
 const Adventure = require('./adventure');
-const Passage = require('./passage')
+const Passage = require('./passage');
+const Link = require('./link');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -15,6 +16,8 @@ User.hasOne(Adventure, {as: 'owner'});
 Passage.belongsTo(Adventure);
 Adventure.hasMany(Passage);
 
+Passage.belongsToMany(Passage, { as: 'fromPassage', through: Link})
+Passage.belongsToMany(Passage, { as: 'toPassage', through: Link})
 
 
 /**
@@ -24,5 +27,8 @@ Adventure.hasMany(Passage);
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Adventure,
+  Passage,
+  Link
 }
