@@ -2,6 +2,9 @@ const User = require('./user');
 const Adventure = require('./adventure');
 const Passage = require('./passage');
 const Link = require('./link');
+const NumberFlag = require('./numberFlag');
+const StringFlag = require('./stringFlag');
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -19,6 +22,8 @@ Adventure.hasMany(Passage);
 Passage.belongsToMany(Passage, { as: 'fromPassage', through: Link})
 Passage.belongsToMany(Passage, { as: 'toPassage', through: Link})
 
+StringFlag.belongsTo(Passage);
+NumberFlag.belongsTo(Passage);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -30,5 +35,7 @@ module.exports = {
   User,
   Adventure,
   Passage,
-  Link
+  Link,
+  NumberFlag,
+  StringFlag,
 }
