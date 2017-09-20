@@ -1,5 +1,6 @@
 const User = require('./user');
 const Adventure = require('./adventure');
+const Passage = require('./passage')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -8,8 +9,11 @@ const Adventure = require('./adventure');
  *    BlogPost.belongsTo(User)
  */
 
- Adventure.belongsTo(User, {as: 'owner'});
- User.hasOne(Adventure, {as: 'owner'});
+Adventure.belongsTo(User, {as: 'owner'});
+User.hasOne(Adventure, {as: 'owner'});
+
+Passage.belongsTo(Adventure);
+Adventure.hasMany(Passage);
 
 
 
