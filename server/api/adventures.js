@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Adventure} = require('../db/models')
+const {Adventure, Passage } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -9,9 +9,15 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  Adventure.create(req.body)
-    .then(adventure => res.json(adventure))
-    .catch(next)
+  Adventure.findById(Number(req.params.id))
+  .then(adventure => adventure.getPassages())
+  .catch(next)
+})
+
+router.get('/passages/:id', (req, res, next) => {
+  Adventure.findById(Number(req.params.id))
+  .then(adventure => adventure.getPassages())
+  .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {

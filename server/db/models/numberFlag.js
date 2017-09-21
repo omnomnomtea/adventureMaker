@@ -10,7 +10,7 @@ const NumberFlag = db.define('numberFlag', {
     // the first 5 are instructions to set a variable
     // the remaining ones are instructions to compare the variable in state
     // (in store or session) to the "value"
-    type: Sequelize.enum('+', '-', '*', '/', '=', '>', '<', '<=', '>=', '==='),
+    type: Sequelize.ENUM('+', '-', '*', '/', '=', '>', '<', '<=', '>=', '==='),
     allowNull: false
   },
   value: {

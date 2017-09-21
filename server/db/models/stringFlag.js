@@ -10,7 +10,7 @@ const StringFlag = db.define('stringFlag', {
     // the first thing in the enum is an instruction to set a variable
     // the remaining one is an instruction to compare the variable in state
     // (in store or session) to the "value" and return true or false
-    type: Sequelize.enum('=', '==='),
+    type: Sequelize.ENUM('=', '==='),
     allowNull: false
   },
   value: {

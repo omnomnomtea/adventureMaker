@@ -19,11 +19,10 @@ User.hasOne(Adventure, {as: 'owner'});
 Passage.belongsTo(Adventure);
 Adventure.hasMany(Passage);
 
-Passage.belongsToMany(Passage, { as: 'fromPassage', through: Link})
-Passage.belongsToMany(Passage, { as: 'toPassage', through: Link})
+Passage.belongsToMany(Passage, { as: 'fromPassage', through: Link, foreignKey: 'fromPassageId', otherKey: 'toPassageId'})
 
-StringFlag.belongsTo(Passage);
 NumberFlag.belongsTo(Passage);
+StringFlag.belongsTo(Passage);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
