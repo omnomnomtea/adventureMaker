@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -30,6 +31,17 @@ export const fetchAdventure = (id) =>
     axios.get(`/api/adventures/${id}`)
       .then(res => {
         if (res.data) dispatch(getAdventure(res.data));
+      })
+      .catch(err => console.log(err))
+
+export const createAdventure = (adventure) =>
+  dispatch =>
+    axios.post(`/api/adventures/`, adventure)
+      .then(res => {
+        if (res.data) {
+          dispatch(getAdventure(res.data));
+          history.push(`/adventures/${res.data.id}`)
+        }
       })
       .catch(err => console.log(err))
 
