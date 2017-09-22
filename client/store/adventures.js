@@ -34,6 +34,14 @@ export const fetchAdventure = (id) =>
       })
       .catch(err => console.log(err))
 
+export const fetchAllAdventures = () =>
+  dispatch =>
+    axios.get(`/api/adventures/`)
+      .then(res => {
+        if (res.data) dispatch(getAllAdventures(res.data));
+      })
+      .catch(err => console.log(err))
+
 export const createAdventure = (adventure) =>
   dispatch =>
     axios.post(`/api/adventures/`, adventure)
