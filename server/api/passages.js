@@ -3,8 +3,11 @@ const { Passage, Link } = require('../db/models')
 module.exports = router
 
 router.get('/:id', (req, res, next) => {
-  Passage.findById(Number(req.params.id), {include: [Link]})
-    .then(passage => res.json(passage))
+  Passage.findOne({ where: { id: Number(req.params.id) }, include: [{ model: Link, foreignKey: 'fromPassageId' }] })
+    .then((passage) => {
+      if (!passage) res.status(404).send('No such passage');
+      else res.json(passage)
+    })
     .catch(next)
 });
 
