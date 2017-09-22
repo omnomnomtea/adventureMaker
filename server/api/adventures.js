@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Adventure, Passage } = require('../db/models')
+const { Adventure } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
