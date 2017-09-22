@@ -8,3 +8,4 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 });
 
+//the route to get all passages for an adventure is in the adventure router

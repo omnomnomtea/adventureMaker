@@ -8,6 +8,10 @@ const Passage = db.define('passage', {
   },
   description: {
     type: Sequelize.TEXT,
+  },
+  canStartAdventure: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
