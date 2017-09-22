@@ -9,8 +9,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  Adventure.findById(Number(req.params.id))
-    .then(adventure => adventure.getPassages())
+  req.body.ownerId = req.user.id;
+  Adventure.create(req.body)
+    .then(adventure => res.json(adventure))
     .catch(next)
 })
 
@@ -26,10 +27,10 @@ router.get('/passages/:id', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Adventure.findById(Number(req.params.id))
-  .then((adventure) => {
-    if (!adventure) res.status(404).send('no such adventure');
-    else res.json(adventure);
-  })
+    .then((adventure) => {
+      if (!adventure) res.status(404).send('no such adventure');
+      else res.json(adventure);
+    })
     .catch(next)
 })
 
