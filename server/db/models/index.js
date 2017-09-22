@@ -19,7 +19,11 @@ User.hasOne(Adventure, {as: 'owner'});
 Passage.belongsTo(Adventure);
 Adventure.hasMany(Passage);
 
-Passage.belongsToMany(Passage, { as: 'fromPassage', through: Link, foreignKey: 'fromPassageId', otherKey: 'toPassageId'})
+Link.belongsTo(Passage, {as: 'fromPassage'});
+Link.belongsTo(Passage, {as: 'toPassage'});
+Passage.hasMany(Link, {foreignKey: 'fromPassageId'});
+Passage.hasMany(Link, {foreignKey: 'toPassageId'});
+
 
 NumberFlag.belongsTo(Passage);
 StringFlag.belongsTo(Passage);
