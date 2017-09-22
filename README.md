@@ -1,6 +1,6 @@
 # AdventureMaker
 
-A site to make adventure games.
+A site to make adventure games. Very much in-progress.
 
 ### Credit where credit is due
 
