@@ -29,7 +29,7 @@ class CreateAdventureForm extends React.Component {
         <h2>New Adventure</h2>
         <Form onSubmit={this.handleSubmit}>
           <Input label="Title" type="text" name="title" onChange={this.handleChange} value={this.state.title} />
-          <TextArea label="Description" name='description' style={{ minHeight: 100 }} onChange={this.handleChange} />
+          <TextArea label="Description" name="description" style={{ minHeight: 100 }} onChange={this.handleChange} />
           <Button basic color="green" type="submit">Create</Button>
         </Form>
       </div>
