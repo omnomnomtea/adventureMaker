@@ -28,8 +28,9 @@ export const getAllAdventures = (adventures) => ({ type: GET_ALL_ADVENTURES, adv
 export const fetchAdventure = (id) =>
   dispatch =>
     axios.get(`/api/adventures/${id}`)
-      .then(res =>
-        dispatch(getAdventure(res.data || defaultAdventure)))
+      .then(res => {
+        if (res.data) dispatch(getAdventure(res.data));
+      })
       .catch(err => console.log(err))
 
 export const deleteAdventure = (id) =>
@@ -43,7 +44,7 @@ export const deleteAdventure = (id) =>
 /**
  * REDUCER
  */
-export default function (adventures = defaultAdventure, action) {
+export default function (adventures = defaultAdventures, action) {
   let index;
   switch (action.type) {
     case GET_ADVENTURE:
