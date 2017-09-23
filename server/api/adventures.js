@@ -35,6 +35,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
+  req.body.ownerId = req.user.id;
   Adventure.findById(Number(req.params.id))
     .then(adventure => {
       if (!adventure) res.status(404).send('no such adventure');

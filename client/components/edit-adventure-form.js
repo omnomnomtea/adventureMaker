@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Input, TextArea, Button } from 'semantic-ui-react';
-import { modifyAdventure } from '../store';
+import { editAdventure } from '../store';
 
 class EditAdventureForm extends React.Component {
 
   constructor() {
     super();
     this.state = {
+      id: 0,
       title: '',
       description: ''
     }
@@ -37,6 +38,7 @@ class EditAdventureForm extends React.Component {
   }
   componentWillReceiveProps(newProps) {
     this.setState({
+      id: this.props.id,
       title: newProps.title,
       description: newProps.description
     })
@@ -44,6 +46,7 @@ class EditAdventureForm extends React.Component {
   componentDidMount() {
     if (this.props.id) {
       this.setState({
+        id: this.props.id,
         title: this.props.title,
         description: this.props.description,
       })
@@ -69,7 +72,7 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    modifyAdventure: (adventure) => dispatch(modifyAdventure(adventure))
+    modifyAdventure: (adventure) => dispatch(editAdventure(adventure))
   }
 }
 

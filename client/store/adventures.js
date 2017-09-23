@@ -53,6 +53,17 @@ export const createAdventure = (adventure) =>
       })
       .catch(err => console.log(err))
 
+export const editAdventure = (adventure) =>
+  dispatch =>
+    axios.put(`/api/adventures/${adventure.id}`, adventure)
+      .then(res => {
+        if (res.data) {
+          dispatch(modifyAdventure(res.data));
+          history.push(`/adventures/${res.data.id}`)
+        }
+      })
+      .catch(err => console.log(err))
+
 export const deleteAdventure = (id) =>
   dispatch =>
     axios.delete(`/api/adventure/${id}`)
