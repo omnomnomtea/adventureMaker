@@ -1,6 +1,7 @@
 import history from '../history';
 import React from 'react';
 import { Card, Button } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 
 const handleClickNewPassage = (adventureId) => {
@@ -22,7 +23,7 @@ const MultipleAdventures = (props) => {
           return (
             <Card key={adv.id}>
               <Card.Header>
-                <h3>{adv.title}</h3>
+                <h3><Link to={`/viewadventure/${adv.id}`}>{adv.title}</Link></h3>
               </Card.Header>
               <Card.Content>
                 {adv.description}
@@ -30,7 +31,7 @@ const MultipleAdventures = (props) => {
               <Card.Content extra>
                 <Button fluid onClick={() => handleClickNewPassage(adv.id)} basic color='green'>Add Passage</Button>
                 <Button fluid onClick={() => handleClickEditAdventure(adv.id)} basic color='yellow'>Edit Adventure Info</Button>
-                <Button fluid color='red'>Delete Adventure Passage</Button>
+                <Button fluid color='red'>Delete Adventure</Button>
               </Card.Content>
             </Card>
           )

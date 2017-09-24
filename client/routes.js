@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, CreateAdventureForm, EditAdventureForm, CreatePassageForm} from './components'
+import {Main, Login, Signup, CreateAdventureForm, EditAdventureForm, CreatePassageForm, MyAdventures, AllAdventures, ViewAdventure} from './components'
 import {me, fetchAllAdventures} from './store'
 
 /**
@@ -29,16 +29,16 @@ class Routes extends Component {
               isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path='/home' component={UserHome} />
                   <Route path='/newadventure' component={CreateAdventureForm} />
                   <Route path='/editadventure/:id' component={EditAdventureForm} />
                   <Route path='/newpassage/:adventureId' component={CreatePassageForm} />
-
-
+                  <Route path='/all' component={AllAdventures} />
+                  <Route path='/myadventures' component={MyAdventures} />
+                  <Route path='/viewadventure/:id' component={ViewAdventure} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={CreateAdventureForm} />
+            <Route component={Login} />
           </Switch>
         </Main>
       </Router>

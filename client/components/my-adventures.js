@@ -1,18 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { MultipleAdventures } from './multiple-adventures'
+import MultipleAdventures from './multiple-adventures'
 
 /**
  * COMPONENT
  */
-const UserHome = (props) => {
+const MyAdventures = (props) => {
   const { email, selfAdventures } = props;
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>
+        Welcome, {email} <br />
+        Here is a list of all the adventures you've created!
+      </h3>
 
-    <MultipleAdventures adventures={selfAdventures} />
+      <MultipleAdventures adventures={selfAdventures || []} />
 
     </div>
   )
@@ -31,4 +34,4 @@ const mapState = (state) => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(MyAdventures)
