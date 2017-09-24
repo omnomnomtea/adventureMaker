@@ -1,10 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Card, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import history from '../history'
-import { MultipleAdventures } from './index'
+import { MultipleAdventures } from './multiple-adventures'
 
 /**
  * COMPONENT
