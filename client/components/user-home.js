@@ -4,58 +4,23 @@ import { connect } from 'react-redux'
 import { Card, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import history from '../history'
+import { MultipleAdventures } from './index'
 
 /**
  * COMPONENT
  */
-export class UserHome extends React.Component {
+const UserHome = (props) => {
+  const { email, selfAdventures } = props;
 
-  constructor() {
-    super()
+  return (
+    <div>
+      <h3>Welcome, {email}</h3>
 
-    this.handleClickNewPassage = this.handleClickNewPassage.bind(this);
-  }
+    <MultipleAdventures adventures={selfAdventures} />
 
-  handleClickNewPassage(adventureId) {
-    history.push(`/newpassage/${adventureId}`);
-  }
-  handleClickEditAdventure(adventureId) {
-    history.push(`/editadventure/${adventureId}`);
-  }
+    </div>
+  )
 
-  render() {
-    const { email, selfAdventures } = this.props;
-
-    return (
-      <div>
-        <h3>Welcome, {email}</h3>
-
-        <Card.Group>
-          {
-            selfAdventures.map(adv => {
-              return (
-                <Card key={adv.id}>
-                  <Card.Header>
-                    {adv.title}
-                  </Card.Header>
-                  <Card.Content>
-                    {adv.description}
-                  </Card.Content>
-                  <Card.Content extra>
-                    <Button fluid onClick={() => this.handleClickNewPassage(adv.id)} basic color='green'>Add Passage</Button>
-                    <Button fluid onClick={() => this.handleClickEditAdventure(adv.id)} basic color='yellow'>Edit Adventure Info</Button>
-                    <Button fluid color='red'>Delete Adventure Passage</Button>
-                  </Card.Content>
-                </Card>
-              )
-
-            })
-          }
-        </Card.Group>
-
-      </div>
-    )
-  }
 }
 
 /**
