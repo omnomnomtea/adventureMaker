@@ -12,10 +12,10 @@ router.get('/:id', (req, res, next) => {
 });
 
 
-router.post('/:adventureId', (req, res, next) => {
+router.post('/', (req, res, next) => {
   Passage.create(req.body)
     .then(passage => {
-      req.json(passage);
+      res.json(passage);
     })
     .catch(next)
 });

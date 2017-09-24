@@ -54,7 +54,7 @@ export const fetchAdventurePassages = (id) =>
 
 export const createPassage = (passage) =>
   dispatch =>
-    axios.post(`/api/passage/`, passage)
+    axios.post(`/api/passages/`, passage)
       .then(res => {
         if (res.data) {
           dispatch(getPassage(res.data));
