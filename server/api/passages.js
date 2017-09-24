@@ -13,12 +13,7 @@ router.get('/:id', (req, res, next) => {
 
 
 router.post('/:adventureId', (req, res, next) => {
-  Adventure.findbyId(Number(req.params.adventureId))
-    .then((adv) => {
-      if (!adv) res.status(404).send('No such adventure');
-      req.body.adventureId = Number(req.params.adventureId);
-      return Passage.create(req.body);
-    })
+  Passage.create(req.body)
     .then(passage => {
       req.json(passage);
     })
