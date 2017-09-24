@@ -20,7 +20,7 @@ class CreatePassageForm extends React.Component {
   }
 
   handleSubmit() {
-    this.props.createAdventure(this.state);
+    this.props.createPassage(this.state);
   }
 
   render() {
@@ -44,8 +44,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     createPassage: (passage) => {
-      const adventureId = Number(ownProps.match.params.id);
-      newPassage = { ...passage, adventureId };
+      const adventureId = Number(ownProps.match.params.adventureId);
+      const newPassage = { ...passage, adventureId };
       dispatch(createPassage(newPassage));
     }
   }

@@ -3,10 +3,12 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import user from './user'
 import adventures from './adventures'
+import passages from './passages'
 
 const reducer = combineReducers({
   user,
-  adventures
+  adventures,
+  passages
 })
 
 
@@ -22,3 +24,4 @@ const store = createStore(reducer, composeEnhancers(
 export default store
 export * from './user'
 export * from './adventures'
+export * from './passages'

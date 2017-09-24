@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, CreateAdventureForm, EditAdventureForm} from './components'
+import {Main, Login, Signup, UserHome, CreateAdventureForm, EditAdventureForm, CreatePassageForm} from './components'
 import {me, fetchAllAdventures} from './store'
 
 /**
@@ -32,6 +32,7 @@ class Routes extends Component {
                   <Route path='/home' component={UserHome} />
                   <Route path='/newadventure' component={CreateAdventureForm} />
                   <Route path='/editadventure/:id' component={EditAdventureForm} />
+                  <Route path='/newpassage/:adventureId' component={CreatePassageForm} />
 
 
                 </Switch>
