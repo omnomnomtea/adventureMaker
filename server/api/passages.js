@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Passage, Link } = require('../db/models')
+const { Adventure, Passage, Link } = require('../db/models')
 module.exports = router
 
 router.get('/:id', (req, res, next) => {
@@ -7,6 +7,20 @@ router.get('/:id', (req, res, next) => {
     .then((passage) => {
       if (!passage) res.status(404).send('No such passage');
       else res.json(passage)
+    })
+    .catch(next)
+});
+
+
+router.post('/:adventureId', (req, res, next) => {
+  Adventure.findbyId(Number(req.params.adventureId))
+    .then((adv) => {
+      if (!adv) res.status(404).send('No such adventure');
+      req.body.adventureId = Number(req.params.adventureId);
+      return Passage.create(req.body);
+    })
+    .then(passage => {
+      req.json(passage);
     })
     .catch(next)
 });
