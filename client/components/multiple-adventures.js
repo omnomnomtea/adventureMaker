@@ -23,7 +23,7 @@ const MultipleAdventures = (props) => {
           return (
             <Card key={adv.id}>
               <Card.Header>
-                <h3><Link to={`/viewadventure/${adv.id}`}>{adv.title}</Link></h3>
+                <h3><Link to={`/adventure/${adv.id}`}>{adv.title}</Link></h3>
               </Card.Header>
               <Card.Content>
                 {adv.description}

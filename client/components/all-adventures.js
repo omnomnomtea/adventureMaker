@@ -1,30 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { MultipleAdventures } from './multiple-adventures'
+import  MultipleAdventures  from './multiple-adventures'
 
 /**
  * COMPONENT
  */
 const AllAdventures = (props) => {
   const { adventures } = props;
+  if (!adventures) return <div />
 
   return (
-    <div>
-
-      <MultipleAdventures adventures={adventures} />
-
-    </div>
+    <MultipleAdventures adventures={adventures} />
   )
 
 }
 
-/**
- * CONTAINER
- */
+
 const mapState = (state) => {
   return {
     adventures: state.adventures
   }
 }
 
-export default connect(mapState)(AllAdventures)
+export default connect(mapState, null)(AllAdventures)

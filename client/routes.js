@@ -25,6 +25,9 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
+            <Route path='/all' component={AllAdventures} />
+            <Route exact path='/' component={AllAdventures} />
+
             {
               isLoggedIn &&
                 <Switch>
@@ -32,9 +35,8 @@ class Routes extends Component {
                   <Route path='/newadventure' component={CreateAdventureForm} />
                   <Route path='/editadventure/:id' component={EditAdventureForm} />
                   <Route path='/newpassage/:adventureId' component={CreatePassageForm} />
-                  <Route path='/all' component={AllAdventures} />
                   <Route path='/myadventures' component={MyAdventures} />
-                  <Route path='/viewadventure/:id' component={ViewAdventure} />
+                  <Route path='/adventure/:id' component={ViewAdventure} />
                   <Route path='/passage/:id' component={Passage} />
 
                 </Switch>
