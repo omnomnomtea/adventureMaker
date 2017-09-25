@@ -10,54 +10,50 @@ class ViewAdventure extends React.Component {
   constructor() {
     super()
     this.state = {
+      sentDispatch: false,
       loaded: false
     }
   }
 
-  componentDidMount() {
-    if (this.props.getPassages && this.props.id) {
-      this.props.getPassages(this.props.id);
-      this.setState({ loaded: true })
-    }
-  }
-
   componentWillReceiveProps(newProps) {
-    //if we haven't had a chance to get the passages before, but now we do, do it
-    if (!(this.props.getPassages && this.props.id) && (newProps.id && this.props.getPassages)) {
-      this.newProps.getPassages(newProps.id);
-      this.setState({ loaded: true });
+    if (!this.state.sentDispatch && newProps.adventure) {
+      newProps.getPassages(newProps.id)
+        .then(() => this.setState({ loaded: true }))
+      this.setState({ sentDispatch: true })
     }
   }
 
   render() {
     const { adventure, startingPassage } = this.props;
-    if (!loaded) return <div />
+    if (!this.state.loaded || !this.props.adventure) return <div />
 
     return (
       <div>
         <h3>{adventure.title}</h3>
 
-        <div>
-          <h4>{startingPassage.title}</h4>
-          <p>{startingPassage.description}</p>
-        </div>
+        {!!startingPassage &&
+          <div>
+            <h4>{startingPassage.title}</h4>
+            <p>{startingPassage.description}</p>
+          </div>
+        }
         <Card.Group>
+
           {
-            startingPassage.links.map(link => {
-              return (
-                <Card key={link.id}>
-                  <Card.Header>
-                    <Link to={link.toPassageId}>{link.title}</Link>
-                  </Card.Header>
-                </Card>
-              )
-            })
+            // startingPassage.links.map(link => {
+            //   return (
+            //     <Card key={link.id}>
+            //       <Card.Header>
+            //         <Link to={link.toPassageId}>{link.title}</Link>
+            //       </Card.Header>
+            //     </Card>
+            //   )
+            // })
           }
-        </Card.Group>)
+        </Card.Group>
       </div>
 
     )
-
   }
 }
 
@@ -65,8 +61,8 @@ class ViewAdventure extends React.Component {
 const mapState = (state, ownProps) => {
   const id = Number(ownProps.match.params.id);
   const adventure = state.adventures.find(adv => adv.id === id);
-  const passages = state.passages.filter(passage => {
-    return passage.adventureId === adventure.id;
+  const passages = state.passages.filter(pas => {
+    return pas.adventureId === adventure.id;
   })
   const startingPassage = passages.filter(passage => passage.canStartAdventure)[0]
 
