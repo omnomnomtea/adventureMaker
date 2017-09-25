@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchAdventurePassages } from '../store'
 import { Card, Button } from 'semantic-ui-react'
-
+import LinkDisplay from './link-display'
 
 class ViewAdventure extends React.Component {
 
@@ -43,11 +43,7 @@ class ViewAdventure extends React.Component {
           {
             startingPassage.fromPassage.map(link => {
               return (
-                <Card key={link.id}>
-                  <Card.Header>
-                    <Link to={`/passage/${link.toPassageId}`}>{link.title}</Link>
-                  </Card.Header>
-                </Card>
+                <LinkDisplay key={link.id} passage={link} />
               )
             })
           }
