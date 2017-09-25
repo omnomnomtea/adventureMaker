@@ -4,8 +4,8 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, CreateAdventureForm, EditAdventureForm, CreatePassageForm, MyAdventures, AllAdventures, ViewAdventure} from './components'
-import {me, fetchAllAdventures} from './store'
+import {Main, Login, Signup, CreateAdventureForm, EditAdventureForm, CreatePassageForm, MyAdventures, AllAdventures, ViewAdventure, Passage} from './components'
+import {me, fetchAllAdventures, fetchAllPassages} from './store'
 
 /**
  * COMPONENT
@@ -35,6 +35,8 @@ class Routes extends Component {
                   <Route path='/all' component={AllAdventures} />
                   <Route path='/myadventures' component={MyAdventures} />
                   <Route path='/viewadventure/:id' component={ViewAdventure} />
+                  <Route path='/passage/:id' component={Passage} />
+
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -62,6 +64,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(fetchAllAdventures())
+      dispatch(fetchAllPassages())
     }
   }
 }

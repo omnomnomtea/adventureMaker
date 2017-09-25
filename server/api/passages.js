@@ -11,6 +11,14 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 });
 
+router.get('/', (req, res, next) => {
+  Passage.findAll({include: [{ model: Link, as: 'fromPassage' }] })
+    .then((passages) => {
+      if (!passages) res.status(404).send('No such passage');
+      else res.json(passages)
+    })
+    .catch(next)
+});
 
 router.post('/', (req, res, next) => {
   Passage.create(req.body)

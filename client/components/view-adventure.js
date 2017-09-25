@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAdventurePassages } from '../store'
+import { fetchAdventurePassages, fetchAllPassages } from '../store'
 import { Card, Button } from 'semantic-ui-react'
 import LinkDisplay from './link-display'
 
@@ -12,6 +12,14 @@ class ViewAdventure extends React.Component {
     this.state = {
       sentDispatch: false,
       loaded: false
+    }
+  }
+
+  componentDidMount () {
+    if (!this.state.sentDispatch && this.props.adventure) {
+      this.props.getPassages(this.props.id)
+        .then(() => this.setState({ loaded: true }))
+      this.setState({ sentDispatch: true })
     }
   }
 
@@ -73,7 +81,7 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getPassages: adventureId => dispatch(fetchAdventurePassages(adventureId))
+    getPassages: adventureId => dispatch(fetchAllPassages(adventureId))
   }
 }
 
