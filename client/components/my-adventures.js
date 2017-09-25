@@ -15,7 +15,7 @@ const MyAdventures = (props) => {
         Here is a list of all the adventures you've created!
       </h3>
 
-      <MultipleAdventures adventures={selfAdventures || []} />
+      <MultipleAdventures canEdit={true} adventures={selfAdventures || []} />
 
     </div>
   )

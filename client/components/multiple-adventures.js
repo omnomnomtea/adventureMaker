@@ -14,7 +14,7 @@ const handleClickEditAdventure = (adventureId) => {
 
 const MultipleAdventures = (props) => {
 
-  const { adventures } = props;
+  const { adventures, canEdit } = props;
 
   return (
     <Card.Group>
@@ -28,11 +28,13 @@ const MultipleAdventures = (props) => {
               <Card.Content>
                 {adv.description}
               </Card.Content>
+              { canEdit &&
               <Card.Content extra>
                 <Button fluid onClick={() => handleClickNewPassage(adv.id)} basic color='green'>Add Passage</Button>
                 <Button fluid onClick={() => handleClickEditAdventure(adv.id)} basic color='yellow'>Edit Adventure Info</Button>
                 <Button fluid color='red'>Delete Adventure</Button>
               </Card.Content>
+              }
             </Card>
           )
 
