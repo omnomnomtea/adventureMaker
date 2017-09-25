@@ -19,7 +19,8 @@ router.get('/passages/:id', (req, res, next) => {
   Adventure.findById(Number(req.params.id))
     .then((adventure) => {
       if (!adventure) res.status(404).send('no such adventure')
-      else return adventure.getPassages({include: {model: Link, foreignKey: 'fromPassage'}})
+      else return adventure.getPassages()
+      //ERROR HERE {include: {model: Link, as: 'fromPassage'}}
     })
     .then(passages => res.send(passages))
     .catch(next)

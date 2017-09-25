@@ -20,8 +20,8 @@ Passage.belongsTo(Adventure);
 Adventure.hasMany(Passage);
 
 Link.belongsTo(Passage, {as: 'fromPassage'});
-Link.belongsTo(Passage, {as: 'toPassage'});
 Passage.hasMany(Link, {foreignKey: 'fromPassageId'});
+Link.belongsTo(Passage, {as: 'toPassage'});
 Passage.hasMany(Link, {foreignKey: 'toPassageId'});
 
 
