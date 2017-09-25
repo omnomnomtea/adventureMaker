@@ -37,20 +37,22 @@ class ViewAdventure extends React.Component {
             <p>{startingPassage.description}</p>
           </div>
         }
-        <Card.Group>
 
+        {!!startingPassage &&
+        <Card.Group>
           {
-            // startingPassage.links.map(link => {
-            //   return (
-            //     <Card key={link.id}>
-            //       <Card.Header>
-            //         <Link to={link.toPassageId}>{link.title}</Link>
-            //       </Card.Header>
-            //     </Card>
-            //   )
-            // })
+            startingPassage.links.map(link => {
+              return (
+                <Card key={link.id}>
+                  <Card.Header>
+                    <Link to={link.toPassageId}>{link.title}</Link>
+                  </Card.Header>
+                </Card>
+              )
+            })
           }
         </Card.Group>
+        }
       </div>
 
     )
