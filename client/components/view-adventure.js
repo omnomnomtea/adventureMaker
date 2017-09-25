@@ -38,14 +38,14 @@ class ViewAdventure extends React.Component {
           </div>
         }
 
-        {!!startingPassage && !!startingPassage.links &&
+        {!!startingPassage && !!startingPassage.fromPassage &&
         <Card.Group>
           {
-            startingPassage.links.map(link => {
+            startingPassage.fromPassage.map(link => {
               return (
                 <Card key={link.id}>
                   <Card.Header>
-                    <Link to={link.toPassageId}>{link.title}</Link>
+                    <Link to={`/passage/${link.toPassageId}`}>{link.title}</Link>
                   </Card.Header>
                 </Card>
               )
