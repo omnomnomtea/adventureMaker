@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Adventure, Link } = require('../db/models')
+const { Adventure, Link, Passage } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -19,8 +19,7 @@ router.get('/passages/:id', (req, res, next) => {
   Adventure.findById(Number(req.params.id))
     .then((adventure) => {
       if (!adventure) res.status(404).send('no such adventure')
-      else return adventure.getPassages()
-      //ERROR HERE {include: {model: Link, as: 'fromPassage'}}
+      else return Passage.findAll( {where: {adventureId: Number(req.params.id)}, include: [{model: Link, as: 'fromPassage'}]})
     })
     .then(passages => res.send(passages))
     .catch(next)

@@ -38,7 +38,7 @@ class ViewAdventure extends React.Component {
           </div>
         }
 
-        {!!startingPassage &&
+        {!!startingPassage && !!startingPassage.links &&
         <Card.Group>
           {
             startingPassage.links.map(link => {
